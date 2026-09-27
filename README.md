@@ -12,16 +12,31 @@ Bu repository, **COM0418 - Image Processing** dersi kapsamında gerçekleştiril
 Bu laboratuvar, NumPy dizileri, MATLAB test görüntüleri, OpenCV I/O, veri tipleri, görüntü gösterimi ve bit-plane steganografi konularını kapsamaktadır.
 
 - **📄 Dosyalar:**
-  - `COM0418_ImageProcessing_Week2_Lab_Student_Guided.ipynb` - Öğrenci notebook'u (alıştırma hücreleri)
+  - `COM0418_ImageProcessing_Week2_Lab_Student_Guided.ipynb` - Öğrenci notebook'u (**30 exercise + review cevapları + extra work**)
   - `COM0418_ImageProcessing_Week2_Lab_Instructor_Guided.pdf` - Instructor kılavuzu / PDF
-  - `lab2_test_images/` - MATLAB örnek görüntülerinin yerel kopyaları
+  - `matlab_test_images/` - MATLAB örnek görüntülerinin yerel kopyaları
+  - `week2_lab_output/` - Notebook çalıştırılınca üretilen çıktılar (PNG/JPEG)
 
-- **📁 Test Görüntüleri (`lab2_test_images/`):**
+- **📁 Test Görüntüleri (`matlab_test_images/`):**
   - `cameraman.tif` - Gri seviye görüntü (binary, data type, bit-plane, LSB steganografi)
   - `baby.jpg` - True-color görüntü (OpenCV ile okuma)
   - `sherlock.jpg` - True-color görüntü (Pillow ile karşılaştırma)
   - `trees.tif` - Indexed / palette renkli görüntü
   - `astronaut_rgb.png`, `camera_gray.png`, `camera_binary.png`, `gradient16.png`, `indexed_palette.gif` - Ek örnek görüntüler
+
+#### ✅ Notebook İçeriği
+| Bölüm | Konu | Exercise |
+|---|---|---|
+| 1 | NumPy arrays (list→array, create, indexing, view/copy) | 01–04 |
+| 2 | Grayscale + ROI (`cameraman.tif`) | 05–07 |
+| 3 | Binary threshold | 08 |
+| 4 | True-color BGR vs RGB + Pillow | 09–12 |
+| 5 | Indexed / palette (`trees.tif`) | 13–15 |
+| 6 | Data types & arithmetic | 16–20 |
+| 7 | Display & save | 21–23 |
+| 8 | Bit planes | 24–25 |
+| 9 | LSB steganography | 26–30 |
+| 10 | Review answers + extra work | notebook sonu |
 
 #### 📦 Bölüm 1 - NumPy Arrays for Image Processing
 - Python list → NumPy array dönüşümü
@@ -59,16 +74,26 @@ Bu laboratuvar, NumPy dizileri, MATLAB test görüntüleri, OpenCV I/O, veri tip
 #### 🖥️ Bölüm 7 - Display & Save
 - Matplotlib ile notebook içi görüntüleme
 - `cv2.imshow` ile GUI gösterimi
-- OpenCV ile görüntü kaydetme
+- OpenCV ile görüntü kaydetme (`week2_lab_output/`)
 
 #### 🧩 Bölüm 8 - Bit Planes
 - 8-bit gri görüntünün bit-plane'lerini çıkarma
 - Seçili bit-plane'lerden görüntü yeniden oluşturma
 
 #### 🕵️ Bölüm 9 - LSB Steganography
-- LSB düzlemine mesaj gömme
-- Değişimi ölçme ve görselleştirme
-- Stego görüntüyü kaydetme / yeniden yükleme
+- LSB düzlemine mesaj gömme / çıkarma (`embed_lsb`, `extract_lsb`)
+- Değişimi ölçme (MSE, PSNR) ve görselleştirme
+- Stego görüntüyü PNG olarak kaydetme / yeniden yükleme
+
+#### 📝 Bölüm 10 - Review & Extra Work
+- 8 review sorusunun cevapları (notebook içinde markdown)
+- Extra work kod hücreleri:
+  - Farklı threshold değerleri
+  - BGR vs RGB karşılaştırma
+  - `trees.tif` index ROI + palette
+  - Sadece bit 5–7 ile rekonstrüksiyon
+  - Farklı mesaj uzunlukları vs değişen piksel sayısı
+  - JPEG ile stego testi (LSB’nin bozulması)
 
 - **🎯 Öğrenilen Konular:**
   - NumPy dizilerini oluşturma, indeksleme, dilimleme ve kopyalama
@@ -113,13 +138,17 @@ Bu laboratuvar, NumPy dizileri, MATLAB test görüntüleri, OpenCV I/O, veri tip
 
 4. **📓 Notebook'u açın:**
    - `COM0418_ImageProcessing_Week2_Lab_Student_Guided.ipynb`
-   - Önce setup hücrelerini çalıştırın
-   - Her exercise hücresinde `# Write your code below this line.` altına kodunuzu yazın
-   - **Shift+Enter** ile çalıştırıp çıktıyı kontrol edin
+   - Önce setup hücrelerini (imports + `matlab_image_path`) çalıştırın
+   - Exercise hücrelerini sırayla **Shift+Enter** ile çalıştırın
+   - En sonda **Review answers** ve **Extra work** hücrelerini çalıştırın
 
 5. **🖼️ Test görüntüleri:**
    - Lab bilgisayarlarında öncelik MATLAB image data dizinidir
-   - MATLAB yoksa notebook, `lab2_test_images/` klasörünü fallback olarak kullanır
+   - MATLAB yoksa notebook, `matlab_test_images/` klasörünü fallback olarak kullanır
+
+6. **💾 Çıktılar:**
+   - Kaydedilen görüntüler `week2_lab_output/` altına yazılır
+   - Örnek: `baby_written_by_opencv.png`, `cameraman_stego.png`
 
 ---
 
@@ -155,6 +184,7 @@ Bu laboratuvar çalışmaları ile öğrenciler:
 - ✅ Bit-plane analizi yapar
 - ✅ LSB steganografi temelini uygular
 - ✅ ROI seçimi, threshold ve temel görüntü manipülasyonu yapar
+- ✅ Lab review sorularını ve extra work deneylerini notebook üzerinde tamamlar
 
 ---
 
@@ -165,7 +195,8 @@ COM0418-ImageProcessing/
 ├── Lab 2/
 │   ├── COM0418_ImageProcessing_Week2_Lab_Student_Guided.ipynb
 │   ├── COM0418_ImageProcessing_Week2_Lab_Instructor_Guided.pdf
-│   └── lab2_test_images/
+│   ├── matlab_test_images/
+│   └── week2_lab_output/          # çalıştırınca oluşur
 ├── .gitignore
 └── README.md
 ```
