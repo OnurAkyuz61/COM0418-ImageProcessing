@@ -109,6 +109,66 @@ Bu laboratuvar, NumPy dizileri, MATLAB test görüntüleri, OpenCV I/O, veri tip
 
 ---
 
+### 🔬 Lab 3 - Point Processing, Histograms & Lookup Tables
+Bu laboratuvar, noktasal işlemler (`y = f(x)`), aritmetik işlemler, histogram, contrast stretching, histogram equalization ve lookup table konularını kapsamaktadır.
+
+- **📄 Dosyalar:**
+  - `COM0418_ImageProcessing_Week3_Lab_Student.ipynb` - Öğrenci notebook'u (**13 exercise + review cevapları + 4 extra work**)
+  - `tiles.png`, `pout.tif`, `tire.tif` - Notebook ile aynı klasördeki test görüntüleri
+
+- **📁 Test Görüntüleri:**
+  - `tiles.png` - Parlaklık, aritmetik, complement / solarization
+  - `pout.tif` - Düşük kontrastlı görüntü (histogram, stretching, equalization, CLAHE)
+  - `tire.tif` - Histogram ve LUT örnekleri; iki görüntü aritmetiği
+
+#### ✅ Notebook İçeriği
+| Bölüm | Konu | Exercise |
+|---|---|---|
+| 1 | Test görüntülerini okuma ve gösterme | 01 |
+| 2 | Brightness (add / subtract) | 02 |
+| 3 | NumPy overflow vs OpenCV saturation | 03 |
+| 4 | Multiplication, division, affine (`convertScaleAbs`) | 04 |
+| 5 | Complement ve partial complement | 05 |
+| 6 | İki görüntü aritmetiği (add, subtract, blend) | 06 |
+| 7 | Grayscale histogram (`calcHist`) | 07 |
+| 8 | Contrast stretching (`normalize`) | 08 |
+| 9 | Manuel contrast stretching formülü | 09 |
+| 10 | Histogram equalization (`equalizeHist`) | 10 |
+| 11 | Küçük matriste manuel equalization (CDF → LUT) | 11 |
+| 12 | Lookup tables (`cv2.LUT`) | 12 |
+| 13 | Stretching vs equalization karşılaştırması | 13 |
+| 14 | Review answers + extra work | notebook sonu |
+
+#### ✨ Bölüm özeti
+- **Point processing:** Her çıktı pikseli yalnızca aynı konumdaki girdi pikselinden üretilir
+- **Aritmetik:** `cv2.add` / `cv2.subtract` saturation; NumPy `uint8` overflow
+- **Affine dönüşüm:** `y = αx + β` (`cv2.convertScaleAbs`)
+- **Complement:** Tam ve kısmi invert (solarization benzeri etki)
+- **Histogram:** Parlaklık ve kontrastın frekans dağılımı olarak yorumlanması
+- **Contrast stretching:** Min–max aralığını 0…255’e doğrusal açma
+- **Histogram equalization:** CDF tabanlı yeniden dağıtım
+- **LUT:** Negatif, threshold, gamma dönüşümleri (`cv2.LUT`)
+
+#### 📝 Bölüm 14 - Review & Extra Work
+- 7 review sorusunun kısa cevapları (notebook içinde markdown)
+- Extra work kod hücreleri:
+  - `tire` ve `tiles` üzerinde histogram equalization
+  - Gamma LUT’ları: 0.4, 0.8, 1.5, 2.0
+  - Partial complement: `<80`, `<128`, `>180`
+  - `equalizeHist` vs CLAHE (`cv2.createCLAHE`) karşılaştırması
+
+- **🎯 Öğrenilen Konular:**
+  - Noktasal işlemleri (`y = f(x)`) uygulama
+  - OpenCV saturation ile NumPy overflow farkını açıklama
+  - Parlaklık, ölçekleme, complement ve iki görüntü aritmetiği
+  - Histogram okuma ve yorumlama
+  - Contrast stretching ve histogram equalization farkı
+  - CDF’den equalization LUT’u üretme
+  - `cv2.LUT` ile hızlı point transform
+  - CLAHE ile lokal kontrast iyileştirme
+
+---
+
 ## 🚀 Nasıl Kullanılır
 
 1. **📥 Repository'yi klonlayın:**
@@ -119,7 +179,7 @@ Bu laboratuvar, NumPy dizileri, MATLAB test görüntüleri, OpenCV I/O, veri tip
 
 2. **📂 İlgili laboratuvar klasörüne gidin:**
    ```bash
-   cd "Lab 2"
+   cd "Lab 2"   # veya: cd "Lab 3"
    ```
 
 3. **🐍 Ortamı hazırlayın (Anaconda önerilir):**
@@ -137,18 +197,19 @@ Bu laboratuvar, NumPy dizileri, MATLAB test görüntüleri, OpenCV I/O, veri tip
    ```
 
 4. **📓 Notebook'u açın:**
-   - `COM0418_ImageProcessing_Week2_Lab_Student_Guided.ipynb`
-   - Önce setup hücrelerini (imports + `matlab_image_path`) çalıştırın
+   - Lab 2: `COM0418_ImageProcessing_Week2_Lab_Student_Guided.ipynb`
+   - Lab 3: `COM0418_ImageProcessing_Week3_Lab_Student.ipynb`
+   - Önce setup hücrelerini çalıştırın
    - Exercise hücrelerini sırayla **Shift+Enter** ile çalıştırın
    - En sonda **Review answers** ve **Extra work** hücrelerini çalıştırın
 
 5. **🖼️ Test görüntüleri:**
-   - Lab bilgisayarlarında öncelik MATLAB image data dizinidir
-   - MATLAB yoksa notebook, `matlab_test_images/` klasörünü fallback olarak kullanır
+   - **Lab 2:** Lab bilgisayarlarında öncelik MATLAB image data dizinidir; yoksa `matlab_test_images/` fallback kullanılır
+   - **Lab 3:** `tiles.png`, `pout.tif`, `tire.tif` notebook ile aynı klasörde olmalıdır
 
 6. **💾 Çıktılar:**
-   - Kaydedilen görüntüler `week2_lab_output/` altına yazılır
-   - Örnek: `baby_written_by_opencv.png`, `cameraman_stego.png`
+   - Lab 2 kaydedilen görüntüler `week2_lab_output/` altına yazılır
+   - Lab 3 sonuçları notebook içinde görüntülenir
 
 ---
 
@@ -163,11 +224,11 @@ Bu laboratuvar, NumPy dizileri, MATLAB test görüntüleri, OpenCV I/O, veri tip
 - NumPy
 - OpenCV (`opencv-python`)
 - Matplotlib
-- Pillow (PIL)
+- Pillow (PIL) — özellikle Lab 2
 
 ### 🧪 Ortam (ders laboratuvarı)
 - Anaconda environment: `imagepr_env`
-- (İsteğe bağlı) MATLAB image toolbox örnek görüntüleri
+- (İsteğe bağlı, Lab 2) MATLAB image toolbox örnek görüntüleri
 
 ---
 
@@ -181,9 +242,10 @@ Bu laboratuvar çalışmaları ile öğrenciler:
 - ✅ BGR / RGB kanal sırası farkını açıklar ve düzeltir
 - ✅ Görüntü veri tiplerini güvenli şekilde dönüştürür
 - ✅ Matplotlib ve OpenCV ile görüntü gösterir
-- ✅ Bit-plane analizi yapar
-- ✅ LSB steganografi temelini uygular
-- ✅ ROI seçimi, threshold ve temel görüntü manipülasyonu yapar
+- ✅ Bit-plane analizi ve LSB steganografi temelini uygular
+- ✅ Noktasal işlemler, aritmetik ve complement uygular
+- ✅ Histogram, contrast stretching ve equalization kullanır
+- ✅ Lookup table (`cv2.LUT`) ve CLAHE ile point processing yapar
 - ✅ Lab review sorularını ve extra work deneylerini notebook üzerinde tamamlar
 
 ---
@@ -197,11 +259,16 @@ COM0418-ImageProcessing/
 │   ├── COM0418_ImageProcessing_Week2_Lab_Instructor_Guided.pdf
 │   ├── matlab_test_images/
 │   └── week2_lab_output/          # çalıştırınca oluşur
+├── Lab 3/
+│   ├── COM0418_ImageProcessing_Week3_Lab_Student.ipynb
+│   ├── tiles.png
+│   ├── pout.tif
+│   └── tire.tif
 ├── .gitignore
 └── README.md
 ```
 
-> Yeni laboratuvarlar eklendikçe bu yapı genişleyecektir (`Lab 3/`, `Lab 4/`, …).
+> Yeni laboratuvarlar eklendikçe bu yapı genişleyecektir (`Lab 4/`, …).
 
 ---
 
